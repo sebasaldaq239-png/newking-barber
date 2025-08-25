@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NEWKING Barber</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+    :root {
+      --gold: #d4af37;
+      --dark: #0e0e0e;
+      --light: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
+    }
+
+    /* 🎥 Video de fondo */
+    #bgVideo {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      object-position: center center;
+      z-index: -1;
+      filter: brightness(0.2) blur(1px);
+      opacity: 0.85;
+    }
+
+    .overlay-content {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      z-index: 1;
+      text-align: center;
+      color: var(--light);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    header img {
+      width: 60px;
+      height: 60px;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      color: var(--gold);
+      text-shadow: 0 0 15px var(--gold);
+    }
+
+    .card {
+      background-color: rgba(0, 0, 0, 0.85);
+      border-radius: 20px;
+      padding: 2rem 3rem;
+      max-width: 600px;
+      width: 100%;
+      box-shadow: 0 0 30px var(--gold);
+      text-align: center;
+      animation: fadeIn 1.2s ease-out;
+    }
+
+    .card h2 {
+      color: var(--gold);
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      transition: opacity 0.8s ease;
+    }
+
+    .card p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .barbers {
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      color: var(--gold);
+    }
+
+    .barbers span {
+      display: block;
+      margin: 0.25rem 0;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .buttons a {
+      padding: 0.75rem 1.5rem;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      border-radius: 30px;
+      font-weight: 700;
+      text-decoration: none;
+      box-shadow: 0 0 15px var(--gold);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .buttons a:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px var(--gold);
+    }
+
+    footer {
+      margin-top: 2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin: 0.3rem 0;
+    }
+
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🎥 Video de fondo -->
+  <video autoplay muted loop id="bgVideo">
+    <source src="fondonk.mp4" type="video/mp4">
+    Tu navegador no soporta video HTML5.
+  </video>
+
+  <!-- 📦 Contenido centrado -->
+  <div class="overlay-content">
+    <header>
+      <img src="nk-removebg-preview.png" alt="Logo NEWKING Barber" />
+      <h1>NEWKING</h1>
+    </header>
+
+    <div class="card">
+      <h2 id="changingPhrase">Cortes con precisión, estilo con actitud</h2>
+      <p>
+        En <strong>NEWKING Barber</strong> te ofrecemos cortes modernos con el máximo nivel de precisión y profesionalismo. Viví una experiencia única.
+      </p>
+      <div class="barbers">
+        <span>✂️ Agustin Santi</span>
+        <span>✂️ Leonardo Salusso</span>
+      </div>
+      <div class="buttons">
+        <a href="https://www.yaguar.app/_Newkingbarberr" target="_blank">Reservar Turno 📅</a>
+        <a href="https://instagram.com/newkingbarber_" target="_blank">Instagram 📸</a>
+      </div>
+    </div>
+
+    <footer>
+      <p>📍 Bv España 422 VM, Córdoba (CBA)</p>
+      <p>📸 Instagram: <a href="https://instagram.com/newkingbarber_" target="_blank">@newkingbarber_</a></p>
+    </footer>
+  </div>
+
+  <!-- 🔄 Script para cambiar frases -->
+  <script>
+    const phrases = [
+      'Cortes con precisión, estilo con actitud',
+      'Estilo y profesionalismo que destacan',
+      'Transformamos tu look, potenciamos tu presencia'
+    ];
+    let index = 0;
+    const phraseElement = document.getElementById('changingPhrase');
+
+    setInterval(() => {
+      index = (index + 1) % phrases.length;
+      phraseElement.style.opacity = 0;
+      setTimeout(() => {
+        phraseElement.textContent = phrases[index];
+        phraseElement.style.opacity = 1;
+      }, 400);
+    }, 4000);
+  </script>
+
+</body>
+</html>
